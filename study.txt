@@ -1,0 +1,121 @@
+const camera = new THREE.PerspectiveCamera( 45, width / height, 1, 1000 );
+scene.add( camera );
+
+1 ---- PerspectiveCamera
+cameray bohat kisam key hen pe PerspectiveCamera insani eye ki terha kam kerta hey 
+
+2----- 45% defalt hoti hey jo keh eye ka view hota hey 
+3 ---- width / height,
+window.innerWidth / window.innerHeight,
+  secreen size me canves ka espect ratio devide ho ke center ata hey 
+
+ const renderer = new THREE.WebGLRenderer({canvas:canvas});
+ ye seen ko render kerney k leye WebGLRenderer me canves ko le ga or
+ renderer me setsize dena hota hey is me window ki pure inner width
+  or inner height dena hoti hey 
+  or phir renderer ko camera or scene dena hey
+
+  
+        /*
+object dena hey to 
+geometry box detey hen three js se BoxGeometry geometry box leney k leye
+const geometry = new THREE.BoxGeometry(1,1,1) 
+1 ---- height 
+2 --- width
+3 ---depth dena hey
+object me color deney k leye 
+const material = new THREE.MeshBasicMaterial({color : 0x00ff00})
+color se pehley # ki bajaye 0x lagana hey
+const geometry = new THREE.BoxGeometry(1,1,1) 
+jo geometry leya hey is me color deney k leye 
+const material = new THREE.MeshBasicMaterial({color : 0x00ff00})
+ab color or geometry ko mix kerney k leye 
+     const mash = new THREE.Mesh(geometry, material)
+     geometry or color ko mix kareyn gey
+     ab humey seene me is mash ko dalney ke ley 
+       scene.add(mash)
+       scene me add ker den gey mash ko 
+       ab scene me hamara cube add ho chuka hey lakin nazar nahi aye ga is ki waja 
+       hamara camera cube ke ander hey jesa keh hum camera ke aagey hand rakh den to
+       andhera hota hey ise terha ab camera ko pechey hatana ho ga yeani zoom kam kerna
+       ho ga is ke leye 
+       camera.position.z = 5
+       zoom out ke leye z ki position ko number ko kam ya zeada kerna ho ga
+
+       ab hum cube ko ghoma chahtay hen ager hum mash ko y se rotate karen gey to 1 bar ho ga
+       ager loop me bhi rekh den tab bhi 1 he bar ho ga humey mash ko y se ghomaney k leye 
+          for(let i = 0; i < 15; i++){
+            mash.rotation.y += 5
+        }
+   // 0 ka matlab hey canves ke center point 0 ho ga is ka
+            // venus ki position first peramater x default=0, sec perameter y default=0, third z default=0, 
+
+                  // show light object in canvas
+          //  const lightHelper = new THREE.PointLightHelper(pointLight)
+    
+    
+            // orbit controller
+            // const controls = new OrbitControls(camera, renderer.domElement)
+                //  scene.add(lightHelper)
+                  // mouse movement speed direction change moon and venus 
+
+                  import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+=======================================================
+1 function call ker len gey or is me 
+   requestAnimationFrame(animate)
+ko cal ker ke ise function ko dey den gey 
+or function ko call ker den gey 
+
+
+
+
+
+        const animate = () => {
+            requestAnimationFrame(animate)
+            mash.rotation.x += 0.01
+            renderer.setSize(window.innerWidth, window.innerHeight)
+            renderer.render(scene, camera)
+
+        }
+            animate()
+
+------------- is terha se hum mash ko x y z pe or
+ camera ki position ko bhi change ker saktey hen
+            // mash.rotation.x += 0.01
+           // mash.rotation.y += 0.01
+          //  mash.position.x += 0.01
+           // mash.position.y += 0.01
+          // camera.position.x += 0.01
+          // camera.position.z += 0.01
+
+-------------------------------------------------
+light respond 
+
+
+      const moongeometry = new THREE.SphereGeometry(3, 64, 64)
+
+      jab bhi humey koi jumeatry shape chahey or is ko shape change ki ja sakey 
+      to SphereGeometry lena ho gi or is ke readus or height or width perameter dena ho ga 
+      "3" readus
+      "64" height
+      "64" width 
+      dena ho gi ya apney hesab se bhara saktey ho 
+jab kisi object pe jo keh geometry shape me hoti hey iss ka color 000 
+black hota hey or jab is me hum basic color  MeshBasicMaterial({ color: 0xffffff })
+  const pointLight = new THREE.PointLight(0x000000,1)
+  light lena ho gi or is ka color or intensity 1 pe default set kerna ho gi 
+  or phir light ki position bhi set kerna ho gi
+  light.position.set( 50, 50, 50 ); 
+  or phir light ko scene me add kerna ho ga 
+   scene.add(pointLight)
+daltay hen to color to ho jata hey per light se roshini dalney pe is pe color nazar nahi aye ga
+is ke leye geometry object ko color deney k leye 
+
+-------------------------
+ager app ligh ko dekhana chahtey hen to 
+import kerna ho ga 
+import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
+
+or OrbitControls ko camera dena ho ga or dom element dena ho ga 
+
+     const controls =   new OrbitControls(camera, renderer.domElement)
