@@ -12,6 +12,6 @@ app.use("/api/v1",userRouter);
 
 app.use(express.static(path.resolve("./frontend/build")));
 
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve("./frontend/build/index.html"));
 });
